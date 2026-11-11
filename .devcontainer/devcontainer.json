@@ -1,0 +1,32 @@
+{
+  "name": "Imp Workbench",
+  "dockerComposeFile": ["docker-compose.yml"],
+  "service": "workbench",
+  "runServices": ["workbench", "imp-rs", "imp-ts"],
+  "workspaceFolder": "/workspaces/imp-workbench",
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "moby": true,
+      "dockerDashComposeVersion": "v2"
+    }
+  },
+  "remoteEnv": {
+    "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rust-lang.rust-analyzer",
+        "tamasfe.even-better-toml",
+        "vadimcn.vscode-lldb"
+      ],
+      "settings": {
+        "rust-analyzer.check.command": "clippy",
+        "rust-analyzer.linkedProjects": [
+          "/workspaces/imp-workbench/.mnt/imp-rs/Cargo.toml"
+        ]
+      }
+    }
+  }
+}

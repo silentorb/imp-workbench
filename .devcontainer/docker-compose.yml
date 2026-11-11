@@ -1,0 +1,37 @@
+# Match Dev Containers' project name so host `docker compose` and the IDE share one stack.
+name: imp-workbench_devcontainer
+
+x-mnt-volumes: &mnt-volumes
+  - ..:/workspaces/imp-workbench
+  # Sibling repos under the workbench .mnt/ tree.
+  - ${IMP_RS_PATH:-../../imp-rs}:/workspaces/imp-workbench/.mnt/imp-rs
+  - ${IMP_TS_PATH:-../../imp-ts}:/workspaces/imp-workbench/.mnt/imp-ts
+  - ${IMP_SPEC_PATH:-../../imp-spec}:/workspaces/imp-workbench/.mnt/imp-spec
+
+services:
+  workbench:
+    image: imp-workbench-workbench:local
+    build:
+      context: ..
+      dockerfile: docker/workbench/Dockerfile
+    volumes: *mnt-volumes
+    working_dir: /workspaces/imp-workbench
+    command: sleep infinity
+
+  imp-rs:
+    image: imp-workbench-imp-rs:local
+    build:
+      context: ..
+      dockerfile: docker/imp-rs/Dockerfile
+    volumes: *mnt-volumes
+    working_dir: /workspaces/imp-workbench/.mnt/imp-rs
+    command: sleep infinity
+
+  imp-ts:
+    image: imp-workbench-imp-ts:local
+    build:
+      context: ..
+      dockerfile: docker/imp-ts/Dockerfile
+    volumes: *mnt-volumes
+    working_dir: /workspaces/imp-workbench/.mnt/imp-ts
+    command: sleep infinity
