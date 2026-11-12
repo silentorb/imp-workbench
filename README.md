@@ -18,7 +18,7 @@ Services: `workbench`, `imp-rs`, and `imp-ts`. Sibling repos appear under `.mnt/
 
 ## Agent docs
 
-See [`AGENTS.md`](./AGENTS.md).
+See [`AGENTS.md`](./AGENTS.md). Planning and publishing skills come from silentorb-agents packages baked into the workbench image (`/opt/silentorb-agents/`); rebuild the workbench image to bump package versions.
 
 ## License
 

@@ -24,6 +24,26 @@ Stay **vigilant for feature drift** across mounted repos (docs vs TypeScript vs 
 
 Workbench-owned files are `.devcontainer/` and `docker/`. Change those for environment/tooling work. Edit Imp only under `.mnt/imp-{spec,ts,rs}` when the task is Imp itself.
 
+## Installed agent packages
+
+Silentorb agent skill packages are baked into the workbench image under `/opt/silentorb-agents/`. Skills are exposed via `.agents/skills/` symlinks. Follow each package’s `AGENTS.md`:
+
+| Package | AGENTS.md |
+| --- | --- |
+| `silentorb-agents-publishing` | [`/opt/silentorb-agents/silentorb-agents-publishing/AGENTS.md`](/opt/silentorb-agents/silentorb-agents-publishing/AGENTS.md) |
+| `silentorb-agents-planning` | [`/opt/silentorb-agents/silentorb-agents-planning/AGENTS.md`](/opt/silentorb-agents/silentorb-agents-planning/AGENTS.md) |
+
+## Plan verification
+
+| Repo | Full verify |
+| --- | --- |
+| workbench (this repo) | none — tooling/docs only |
+| `.mnt/imp-spec/` | see that repo’s `AGENTS.md` |
+| `.mnt/imp-ts/` | see that repo’s `AGENTS.md` |
+| `.mnt/imp-rs/` | see that repo’s `AGENTS.md` |
+
+When Imp repos are in plan scope, use each mounted repo’s own verify docs. Do not invent Imp verify commands here.
+
 ## Conventions
 
 - Keep `.devcontainer/.env` local; do not commit it (`.env.example` is the template).
